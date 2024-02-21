@@ -12,6 +12,8 @@ public class TextEditor extends JFrame implements ActionListener{
     JSpinner fontSizeSpinner= new JSpinner();
     JLabel fontLabel= new JLabel("Font : ");
     JButton fontColourButton = new JButton("Colour");
+    JComboBox fontBox ;
+
     TextEditor(){
         //Physical Properties
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,12 +40,19 @@ public class TextEditor extends JFrame implements ActionListener{
             }
         });
         fontColourButton.addActionListener(this);
+
+        String [] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+        fontBox  = new JComboBox(fonts);
+        fontBox.addActionListener(this);
+        fontBox.setSelectedItem("Arial");
+
+
         this.add(fontSizeSpinner);
         this.add(fontColourButton);
         this.add(scrollPane);
         this.add(fontLabel);
+        //  this.add(textArea);
         this.setVisible(true);
-        this.add(textArea);
     }
 
     @Override
@@ -51,7 +60,7 @@ public class TextEditor extends JFrame implements ActionListener{
            if (e.getSource()==fontColourButton){
                JColorChooser colorChooser =new JColorChooser();
 
-               Color color = colorChooser.showDialog(null,"Choose a color",Color.black)
+               Color color = colorChooser.showDialog(null,"Choose a color",Color.BLACK);
                        textArea.setForeground(color);
            }
     }
