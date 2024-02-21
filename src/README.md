@@ -1,1 +1,0 @@
-A simple text editor created by me
